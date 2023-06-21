@@ -1,0 +1,19 @@
+    <!-- <script>
+      window.addEventListener('DOMContentLoaded', function() {
+        // Obtener el formulario y los campos relevantes
+        var formulario = document.getElementById('miFormulario');
+        var campoPais = formulario.elements['pais'];
+        var campoProvincia = formulario.elements['provincia'];
+        var campoLluvia = formulario.elements['lluvia'];
+    
+        // Establecer los valores predeterminados
+        campoPais.value = 'AR';
+        campoProvincia.value = 'Salta';
+        campoLluvia.value = '0';
+    
+        // Enviar el formulario automáticamente después de un breve retraso
+        setTimeout(function() {
+          formulario.submit();
+        }, 1000000); // Ajusta el valor del retraso según sea necesario
+      });
+    </script> -->

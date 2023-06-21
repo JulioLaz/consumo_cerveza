@@ -1,0 +1,13 @@
+.bg {
+   background-color: rgba(225, 188, 107, 0.4);
+ }
+ .main {
+   background-color: rgba(213, 200, 172, 0.2);
+   border-radius: 10px;
+   margin-top: 1rem;
+ }
+ .card {
+   background-color: rgba(199, 175, 121, 0.6) !important;
+   border-radius: 10px;
+   margin-top: 1rem;
+ }

@@ -1,0 +1,155 @@
+{% include 'sitio/cabecera.html' %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+<script>
+  // Escuchar el evento DOMContentLoaded en el formulario
+  document.addEventListener("DOMContentLoaded", function () {
+    // Almacenar los valores ingresados en el almacenamiento local del navegador
+    function storeValues() {
+      const paisInput = document.getElementById("pais");
+      const provinciaInput = document.getElementById("provincia");
+      const lluviaInput = document.getElementById("lluvia");
+      const x3Input = document.querySelector('input[name="x3"]:checked');
+
+      localStorage.setItem("paisValue", paisInput.value);
+      localStorage.setItem("provinciaValue", provinciaInput.value);
+      localStorage.setItem("x3Value", x3Input.value);
+      localStorage.setItem("lluviaValue", lluviaInput.value);
+    }
+
+    // Cargar los valores almacenados en el almacenamiento local al cargar la página
+    function loadValues() {
+      const paisInput = document.getElementById("pais");
+      const provinciaInput = document.getElementById("provincia");
+      const lluviaInput = document.getElementById("lluvia");
+      const x3Inputs = document.querySelectorAll('input[name="x3"]');
+
+      paisInput.value = localStorage.getItem("paisValue") || "";
+      provinciaInput.value = localStorage.getItem("provinciaValue") || "";
+      lluviaInput.value = localStorage.getItem("lluviaValue") || "";
+
+      const x3Value = localStorage.getItem("x3Value") || "1";
+      for (let i = 0; i < x3Inputs.length; i++) {
+        if (x3Inputs[i].value === x3Value) {
+          x3Inputs[i].checked = true;
+        }
+      }
+    }
+
+    // Cargar los valores almacenados al cargar la página
+    loadValues();
+
+    // Almacenar los valores antes de enviar el formulario
+    document
+      .getElementById("miFormulario")
+      .addEventListener("submit", storeValues);
+  });
+</script>
+
+<main class="main" style="padding: 1rem">
+  <div class="container card" style="width: 50rem; align-items: center">
+    <h1 class="text-center">Consulta de Datos Climáticos</h1>
+    <br />
+    <div
+      class="container"
+      style="
+        width: 30rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      "
+    >
+      <form method="POST" action="/" id="miFormulario">
+        <div class="mb-3 row">
+          <label
+            for="pais"
+            class="col-form-label fs-5"
+            style="width: 9rem; text-align: right"
+            >País:</label
+          >
+          <input
+            style="width: 18rem"
+            type="text"
+            class="form-control bg fs-5"
+            name="pais"
+            id="pais"
+            required
+          />
+        </div>
+        <div class="mb-3 row">
+          <label
+            for="provincia"
+            class="col-form-label fs-5"
+            style="width: 9rem; text-align: right"
+            >Provincia:</label
+          >
+          <input
+            style="width: 18rem"
+            type="text"
+            class="form-control bg fs-5"
+            name="provincia"
+            id="provincia"
+            placeholder="Salta"
+            value="{{provincia}}"
+            required
+          />
+        </div>
+        <div class="mb-3 row">
+          <label
+            for="lluvia"
+            class="col-form-label fs-5"
+            style="width: 9rem; text-align: right"
+            >Lluvia (mm):</label
+          >
+          <input
+            style="width: 18rem"
+            type="text"
+            class="form-control bg fs-5"
+            name="lluvia"
+            id="lluvia"
+            placeholder="0"
+            value="0"
+            required
+          />
+        </div>
+
+        <div class="" style="text-align: center; margin: 1rem">
+          <label class="fs-4">Es fin de semana:</label>
+          <div class="form-group">
+            <div class="form-check form-check-inline">
+              <label class="form-check-label fs-4" for="x3_si">Sí</label>
+              <input
+                type="radio"
+                class="form-check-input"
+                id="x3_si"
+                name="x3"
+                value="1"
+                required
+                checked
+              />
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                type="radio"
+                class="form-check-input"
+                id="x3_no"
+                name="x3"
+                value="0"
+                required
+              />
+              <label class="form-check-label fs-4" for="x3_no">No</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <div class="offset-sm-4 col-sm-8">
+            <button type="submit" class="btn btn-primary" name="enviar">
+              Consultar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

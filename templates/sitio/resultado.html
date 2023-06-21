@@ -1,0 +1,73 @@
+<style>
+  .a {
+    background-color: rgba(199, 194, 184, 0.4) !important;
+    margin-bottom: .5rem;
+  }
+  .main {
+    background-color: rgba(213, 200, 172, 0.2);
+    border-radius: 10px;
+    margin-top: 1rem;
+  }
+  .card {
+    background-color: rgba(199, 175, 121, 0.6) !important;
+    border-radius: 10px;
+    margin-top: 1rem;
+  }
+
+  .label {
+    width: 20rem;
+    height: 4rem;
+    border-radius: 5px;
+    border: solid 1px black;
+
+  }
+</style>
+<br>
+{% include 'sitio/index.html' %}
+
+<div class="container card" style="width: 50rem;align-items: center;padding: .5rem 0;">
+  <h1 class="text-center">Resultado de la Consulta</h1>
+  <br>
+  <div class="container" style="width: 25rem;">
+    <div class="">
+      <div class="">
+        <ul class="">
+          <li class="form-control  fs-4 a"><strong>Provincia:</strong> {{ datos_climaticos['name'] or ''}}</li>
+          <li class="form-control  fs-4 a"><strong>Temperatura:</strong> {{ datos_climaticos['main']['temp']or '' }} °C
+          </li>
+          <li class="form-control  fs-4 a"><strong>Humedad:</strong> {{ datos_climaticos['main']['humidity']or '' }} %
+          </li>
+          <li class="form-control  fs-4 a"><strong>Descripción:</strong> {{
+            datos_climaticos['weather'][0]['description']or '' }}</li>
+          <li class="form-control  fs-4 a"><strong>Lluvia:</strong> {{lluvia}} mm</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container card" style="width: 50rem;align-items: center;padding: .5rem 0;">
+
+  <h1 class="text-center">Calculo del % de consumo de cerveza</h1>
+  <div class="container" style="width: 20rem;">
+    <div class="">
+      <div class="">
+        <div class="">
+          {% if consumo < 0 %} <span class="form-control a fs-3 text-center"
+            style="background-color: rgba(238, 67, 67,.5);">
+            <strong>Consumo:</strong> {{ consumo }}%
+            </span>
+            {% else %}
+            <span class="form-control bg fs-3 text-center" style="background-color: rgba(100, 184, 226,.5);">
+              <strong>Consumo:</strong> {{ consumo }}%
+            </span>
+            {% endif %}
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+{% include 'sitio/pie.html' %}
